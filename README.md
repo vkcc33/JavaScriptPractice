@@ -5,4 +5,4 @@ To Practice Javascript and DOM
 
  - feature-A
  - fix-B
-
+ - feature-C
