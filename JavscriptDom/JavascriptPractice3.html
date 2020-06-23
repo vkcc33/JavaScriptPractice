@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavascriptPractice--Javascript图片库</title>
+    <style type="text/css">
+        body{
+            font-family:"Helvetica","Arial",serif;
+            color: #333;
+            background: #CCC;
+            margin:1em 10%;
+        }
+
+        h1{
+            color: #333;
+            background-color: #ccc;
+        }
+        a{
+            color: #c60;
+            background-color: transparent;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        ul{
+            padding: 0;
+        }
+        li{
+            float:left;
+            padding: 1em;
+            list-style: none;
+        }
+        img{
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <h1>Snapshots</h1>
+    <ul>
+        <li><a href="images/fireworks.jpg" onclick="showPic(this);return false;" title="A fireworks display">Fireworks</a></li>
+        <li><a href="images/coffee.jpg" onclick="showPic(this);return false;" title="A cup of black coffee">Coffee</a></li>
+        <li><a href="images/rose.jpg" onclick="showPic(this);return false;" title="A red, red rose">Rose</a></li>
+        <li><a href="images/bigben.jpg" onclick="showPic(this);return false;" title="The famous clock">Big Ben</a></li>
+    </ul>
+    <img src="images/placeholder.jpg" alt="my image gallery" id="placeholder">
+    <p id="description">Choose an image.</p>
+</body>
+<script>
+    function showPic(whichPic) {
+        whichPic.getAttribute("href");
+        var source=whichPic.getAttribute("href");
+        var placeholder=document.getElementById("placeholder");
+        placeholder.setAttribute("src",source);
+        var text=whichPic.getAttribute("title");
+        var body_element=document.getElementsByTagName("body")[0];
+        var description=document.getElementById("description");
+        // alert(body_element.childNodes.length);
+        // alert(body_element.nodeType);
+        // alert(description.nodeValue);
+        // alert(description.childNodes[0].nodeValue);
+        // alert(description.firstChild.nodeValue);
+        description.firstChild.nodeValue=text;
+    }
+
+    window.onload=countBodyChildren();
+</script>
+</html>

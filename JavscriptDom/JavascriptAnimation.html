@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavascriptAnimation 动画</title>
+</head>
+<body>
+    <p id="message">Wheel!</p>
+    <script src="JS/addLoadEvent.js"></script>
+    <script>
+        // function positionMessage() {
+        //     if (!document.getElementById) return false;
+        //     if (!document.getElementById("message")) return false;
+        //     var elem = document.getElementById("message");
+        //     elem.style.position = "absolute";
+        //     elem.style.left = "50px";
+        //     elem.style.top = "100px";
+        // }
+
+        // function moveMessage() {
+        //     if (!document.getElementById) return false;
+        //     if (!document.getElementById("message")) return false;
+        //     var elem = document.getElementById("message");
+        //     elem.style.left = "200px";
+        // }
+        //改进后的moveMessage函数 从而形成渐进的方式
+        // function moveMessage() {
+        //     if (!document.getElementById) return false;
+        //     if (!document.getElementById("message")) return false;
+        //     var elem =document.getElementById("message");
+        //     // parseInt()函数可以把以数字开头的字符串 转换成数字
+        //     var xpos = parseInt(elem.style.left);
+        //     var ypos = parseInt(elem.style.top);
+        //     //比较数值是否相等
+        //     if (xpos == 200 && ypos == 100){
+        //         return true;
+        //     }
+        //     if (xpos < 200) {
+        //         xpos++;
+        //     }
+        //     if (xpos > 200) {
+        //         xpos--;
+        //     }
+        //     if (ypos < 100) {
+        //         ypos++;
+        //     }
+        //     if (ypos > 100) {
+        //         ypos--;
+        //     }
+        //     elem.style.left = xpos + "px";
+        //     elem.style.top = ypos + "px";
+        //     movement = setTimeout("moveMessage()",10);
+        // }
+        //抽象moveMessage函数 抽象的作用就是 不让代码耦合 除了现在这里的P标签 别的也可用
+        addLoadEvent(positionMessage);
+        addLoadEvent(moveMessage);
+        clearTimeout(movement);
+    </script>
+
+</body>
+</html>

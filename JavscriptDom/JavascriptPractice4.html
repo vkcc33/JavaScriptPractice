@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavascriptPractice--Javascript图片库改进</title>
+    <style type="text/css">
+        body{
+            font-family:"Helvetica","Arial",serif;
+            color: #333;
+            background: #CCC;
+            margin:1em 10%;
+        }
+
+        h1{
+            color: #333;
+            background-color: #ccc;
+        }
+        a{
+            color: #c60;
+            background-color: transparent;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        ul{
+            padding: 0;
+        }
+        li{
+            float:left;
+            padding: 1em;
+            list-style: none;
+        }
+        img{
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+<h1>Snapshots</h1>
+<ul id="imagegallery">
+    <li><a href="images/fireworks.jpg" onclick="showPic(this);return false;" title="A fireworks display">Fireworks</a></li>
+    <li><a href="images/coffee.jpg" onclick="showPic(this);return false;" title="A cup of black coffee">Coffee</a></li>
+    <li><a href="images/rose.jpg" onclick="showPic(this);return false;" title="A red, red rose">Rose</a></li>
+    <li><a href="images/bigben.jpg" onclick="showPic(this);return false;" title="The famous clock">Big Ben</a></li>
+</ul>
+<img src="images/placeholder.jpg" alt="my image gallery" id="placeholder">
+<p id="description">Choose an image.</p>
+</body>
+<script>
+    //旧版showPic函数
+    // function showPic(whichPic) {
+    //     whichPic.getAttribute("href");
+    //     var source=whichPic.getAttribute("href");
+    //     var placeholder=document.getElementById("placeholder");
+    //     placeholder.setAttribute("src",source);
+    //     var text=whichPic.getAttribute("title");
+    //     var body_element=document.getElementsByTagName("body")[0];
+    //     var description=document.getElementById("description");
+    //     // alert(body_element.childNodes.length);
+    //     // alert(body_element.nodeType);
+    //     // alert(description.nodeValue);
+    //     // alert(description.childNodes[0].nodeValue);
+    //     // alert(description.firstChild.nodeValue);
+    //     description.firstChild.nodeValue=text;
+    // }
+
+    //window.onload=countBodyChildren();
+
+    //改进版showPic函数
+    // function showPic(whichPic) {
+    //     if (!document.getElementById("placeholder")) return false;
+    //     var source=whichPic.getAttribute("href");
+    //     var placeholder=document.getElementById("placeholder");
+    //     placeholder.setAttribute("src",source);
+    //     if (document.getElementById("description")) {
+    //         var text=whichPic.getAttribute("title");
+    //         var description=document.getElementById("description");
+    //         description.firstChild.nodeValue=text;
+    //     }
+    //
+    //     return true;
+    // }
+
+    //优化改进版showPic函数
+    function showPic(whichPic) {
+        if (!document.getElementById("placeholder")) return false;
+        var source=whichPic.getAttribute("href");
+        var placeholder=document.getElementById("placeholder");
+        if (placeholder.nodeName != "IMG") return false;
+        placeholder.setAttribute("src",source);
+        if (document.getElementById("description")) {
+            var text=whichPic.getAttribute("title")?whichPic.getAttribute("title"):"";
+            var description=document.getElementById("description");
+            if (description.firstChild.nodeType == 3) {
+                description.firstChild.nodeValue=text;
+
+            }
+        }
+
+        return true;
+    }
+    function preparegallery() {
+        //这里的没用大括号的原因是因为 我们的此判断函数内部只有一行 所以可以默认省略
+        if (!document.getElementsByTagName()) return false;
+        if (!document.getElementById()) return false;
+        if (!document.getElementsByClassName()) return false;
+        var gallery=document.getElementById("imagegallery");
+        var links=gallery.getElementsByTagName("a");
+        //遍历links数组
+        for (var i = 0; i < links.length; i++) {
+            links[i].onclick=function () {
+                return showPic(this)?false:true;
+
+            }
+        }
+
+
+
+    }
+</script>
+</html>
