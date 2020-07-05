@@ -1,0 +1,131 @@
+1.区分大小写
+    变量名、函数名和操作符都区分大小写
+2.标识符
+    所谓标识符，就是指变量名、函数、属性的名字、或者函数的参数
+    约定命令格式:
+    ①第一个字符必须是一个字母、下划线、或者一个美元$符号
+        例如:_1、$_1、A_1_$
+    ②除开第一个字符，其他字符可以是字母、下划线、美元$符号、或者数字
+        例如:$1_a
+    ③按照惯例，ECMAScript标识符采用驼峰命名法中的大小写格式,也就是第一个字母小写,剩下的
+      每个单词首字母大写
+        例如:firstSecond、myCar、doSomethingImportant
+    ④注意:不能把关键字、保留字、true、false和null用作标识符
+3.注释符
+    ECMAScript使用C风格的注释，分为:单行注释、块级注释,如下所示:
+        ①单行注释:单行注释以两个斜杠开头
+            例如://单行注释
+        ②块级注释:块级注释以一个斜杠(/)和一个星号(*)开头,以星号(*)和斜杠(/)结束
+            例如:/*.....*/
+4.严格模式(strict model) 有些浏览器并不支持所以请谨慎使用
+    严格模式是为Javascript定义了一种不同的解析与执行模型。在严格模式下ECMAScript3
+    中的一些不确定的行为将得到处理,而且对某些不安全的操作也会抛出错误。
+    ①要在整个脚本中启用严格模式,可以在顶部加入如下代码
+        例如: "use strict";
+    ②也可以指定函数在严格模式下执行
+        例如:function doSomething(){
+                "use strict"
+                //下面是函数体
+        }
+5.语句
+    ①ECMAScript中的语句一个分号结尾;如果省略分号,则由解释器确定语句的结尾,如下例所示:
+        var sum = a + b //即使没有分号也是有效语句--不推荐
+        var diff= a - b //有效语句--强烈推荐
+    ②可以使用C风格的语法把多条语句组合到一个代码块中,即花括号
+        例如:
+        if(test){
+            test =false;
+            alert(test);
+        }
+        ----
+        if (test)
+            alert(test); //这种有效但不推荐
+6.关键字和保留字
+    ①关键字
+        是一组具有特定用途的关键字
+        例如:
+            break do instanceof typeof
+            case else new var
+            catch finally return void
+            continue for switch while
+            debugger function this with
+            default if throw
+            delete in try
+    ②保留字
+        是一组可能将来被用作关键字
+        例如:
+            abstract enum int short
+            boolean export interface static
+            byte extends long super
+            char final native synchronized
+            class float package throws
+            const goto private transient
+            debugger implement protected volatile
+            double import public
+         ECMAScript第5版在非严格模式下运行时的保留字缩减为下列这些:
+            class enum extends super
+            const export import
+         在严格模式下,第5版还对以下保留字施加了限制:
+            implement package public
+            interface private static
+            let protected yield
+7.变量
+    ①所谓变量是松散的，是指变量类型能通过简单的赋值进行转换
+      默认未定义变量为 undefined
+        例如:
+            var message ; // undefinded
+            var message = "dsd";
+            var message = 100 ;
+    ②变量作用范围
+        A:在函数体中使用关键字var定义的变量 为局部变量
+        B:在任何地方未使用 关键字var定义的变量 为全局变量
+          注意:
+                可以在函数体中定义全局变量,但不建议不推荐那么做。
+    ③定义多个变量只需在关键字var后逗号隔开
+        例如：
+            var message = "full",found = "false",age = "100";
+8.数据类型
+    数据类型分为简单类型和复杂类型
+        ①ECMAScript中有5种简单数据类型(也称为基本数据类型):
+            undefined、Null、Boolean、Number、String
+        ②Object，本质上由一组无序的名值对组成的。
+9.typeof操作符 也就是类型比较符
+    鉴于ECMScript是松散类型的。因此我们需要一种手段来检测给定变量的数据类型
+    typeof返回的数据类型:
+        ①undefined--未定义
+        ②boolean--布尔类型
+        ③string--字符串类型
+        ④number--数值类型
+        ⑤object--对象类型或null类型
+        ⑥function--函数 比如 doSomething=function(){} (也就是匿名函数)
+    注意:从技术角度讲,函数在ECMAScript中是对象,不是一种数据类型。然而函数确实有
+        一些特殊的属性，因此通过typeof操作符来区分函数和其他对象是有必要的
+10.一元操作符
+    只能操作一个值的操作符叫做一元操作符。一元操作符是ECMAScript中最简单的操作符
+    一元操作符分为两类 前置递加和递减 后置递加和递减
+    ①前置操作符
+        例如:
+            var age=10;
+                --age;
+                ++age;
+    注意:执行前置递加和递减操作时,变量的值都是在语句被求值以前改变的。
+        在计算机科学领域,这种情况通常被称作副效应。
+        例如:
+            var num1=2;
+            var num2=20;
+            var num3 = --num1 + num2 //这时会先计算--num1的值再加num2 最后等于21；
+            var num4 = num1 + num2 ; //而这里的num1会因为代码从上而下覆盖掉
+                                     原本的num1(2)的值变成num1(--num1 1)
+                                     再加20 所以两个算式结果都为21
+    ②后置操作符
+        例如:
+            var age=10;
+                age++;
+                age--;
+    注意:后置递加递减操作是在包含它们的语句被求值之后才执行的。
+        例如:
+            var num1=2;
+            var num2=20;
+            var num3 = num1-- + num2;//这里num1会直接取代 num1--(num1=2) 结果22
+            var num4 = num1 + num2 ;//这里的num1取 2-1的结果为1 再加20 结果21
+
